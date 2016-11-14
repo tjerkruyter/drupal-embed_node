@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains embed_node.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function embed_node_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the render_menu module.
+    case 'help.page.embed_node':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Embed node in twig templates') . '</p>';
+      return $output;
+
+    default:
+  }
+}
