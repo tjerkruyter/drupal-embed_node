@@ -30,6 +30,12 @@ class EmbedNodeExtension extends \Twig_Extension {
             new \Twig_SimpleFunction('embed_node', [$this, 'embedNode'], [
                 'is_safe' => ['html'],
             ]),
+            new \Twig_SimpleFunction('embed_node_object', [$this, 'embedNodeObject'], [
+                'is_safe' => ['html'],
+            ]),
+            new \Twig_SimpleFunction('embed_node_field', [$this, 'embedNodeField'], [
+                'is_safe' => ['html'],
+            ]),            
         ];
     }
 
@@ -38,5 +44,15 @@ class EmbedNodeExtension extends \Twig_Extension {
         $viewBuilder = \Drupal::entityManager()->getViewBuilder('node');
 
         return $viewBuilder->view($node, $viewMode);
+    }
+
+    public function embedNodeObject(Node $node, $viewMode = 'teaser') {
+        $viewBuilder = \Drupal::entityManager()->getViewBuilder('node');
+
+        return $viewBuilder->view($node, $viewMode);
+    }
+
+    public function embedNodeField($field, $displayOptions = []) {
+        return $field->view($displayOptions);
     }
 }
